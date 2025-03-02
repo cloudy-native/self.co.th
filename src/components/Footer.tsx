@@ -124,7 +124,7 @@ const Footer = () => {
             <Link as={GatsbyLink} to="/about">
               About Us
             </Link>
-            <Link as={GatsbyLink} to="/how-to-use">
+            <Link as={GatsbyLink} to="/how-to-use-2">
               How to Use
             </Link>
           </Stack>

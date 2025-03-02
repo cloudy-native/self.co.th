@@ -10,47 +10,34 @@ import {
   Stack,
   Text,
   useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Divider,
 } from "@chakra-ui/react";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";
-import { FaShoppingBag } from "react-icons/fa";
 
-interface NavItem {
-  label: string;
-  href: string;
-  isExternal?: boolean;
-}
+import { NAV_ITEMS, LANGUAGE_OPTIONS } from "../data/navigation";
 
-const NAV_ITEMS: NavItem[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Products",
-    href: "/products",
-  },
-  {
-    label: "About Us",
-    href: "/about",
-  },
-  {
-    label: "How to Use",
-    href: "/how-to-use",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-  },
-];
+// Move import to correct position
+import { FaShoppingBag, FaGlobe, FaChevronDown } from "react-icons/fa";
+import { Language, useLanguage } from "../context/LanguageContext";
+
 
 const Header = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const { language, setLanguage, t } = useLanguage();
 
   // Use the brand colors for the header
   const bgColor = "white";
   const textColor = "gray.700";
   const borderColor = "brand.100";
+
+  const handleLanguageChange = (newLanguage: Language) => {
+    setLanguage(newLanguage);
+  };
 
   return (
     <Box
@@ -124,7 +111,7 @@ const Header = () => {
                       color: "brand.500",
                     }}
                   >
-                    {navItem.label}
+                    {language === 'en' ? navItem.label : t(navItem.translationKey)}
                   </Link>
                 ))}
               </Stack>
@@ -135,8 +122,34 @@ const Header = () => {
             flex={{ base: 1, md: 0 }}
             justify={"flex-end"}
             direction={"row"}
-            spacing={6}
+            spacing={3}
+            align="center"
           >
+            <Menu>
+              <MenuButton
+                as={Button}
+                size="sm"
+                variant="ghost"
+                fontWeight={400}
+                rightIcon={<FaChevronDown />}
+                leftIcon={<FaGlobe />}
+                color={textColor}
+                _hover={{
+                  bg: "brand.50",
+                }}
+              >
+                {LANGUAGE_OPTIONS[language]}
+              </MenuButton>
+              <MenuList borderColor="brand.100" zIndex={10}>
+                <MenuItem onClick={() => handleLanguageChange('en')}>
+                  English {language === 'en' && <Text as="span" ml={2} color="brand.500" fontWeight="bold">✓</Text>}
+                </MenuItem>
+                <MenuItem onClick={() => handleLanguageChange('th')}>
+                  Lorem ipsum {language === 'th' && <Text as="span" ml={2} color="brand.500" fontWeight="bold">✓</Text>}
+                </MenuItem>
+              </MenuList>
+            </Menu>
+            <Divider orientation="vertical" height="20px" borderColor="brand.100" />
             <Button
               display={{ base: "none", md: "inline-flex" }}
               fontSize={"sm"}
@@ -149,7 +162,7 @@ const Header = () => {
               }}
               leftIcon={<FaShoppingBag />}
             >
-              Shop Now
+              {t('button.shopNow')}
             </Button>
           </Stack>
         </Flex>
@@ -171,9 +184,31 @@ const Header = () => {
                     color: "brand.500",
                   }}
                 >
-                  {navItem.label}
+                  {language === 'en' ? navItem.label : t(navItem.translationKey)}
                 </Link>
               ))}
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  w="full"
+                  size="sm"
+                  variant="outline"
+                  colorScheme="brand"
+                  mb={2}
+                  rightIcon={<FaChevronDown />}
+                  leftIcon={<FaGlobe />}
+                >
+                  {LANGUAGE_OPTIONS[language]}
+                </MenuButton>
+                <MenuList zIndex={10}>
+                  <MenuItem onClick={() => handleLanguageChange('en')}>
+                    English {language === 'en' && <Text as="span" ml={2} color="brand.500" fontWeight="bold">✓</Text>}
+                  </MenuItem>
+                  <MenuItem onClick={() => handleLanguageChange('th')}>
+                    Lorem ipsum {language === 'th' && <Text as="span" ml={2} color="brand.500" fontWeight="bold">✓</Text>}
+                  </MenuItem>
+                </MenuList>
+              </Menu>
               <Button
                 w="full"
                 fontSize={"sm"}
@@ -185,7 +220,7 @@ const Header = () => {
                 }}
                 leftIcon={<FaShoppingBag />}
               >
-                Shop Now
+                {t('button.shopNow')}
               </Button>
             </Stack>
           </Box>
