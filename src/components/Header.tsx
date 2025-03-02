@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -9,13 +9,11 @@ import {
   Link,
   Stack,
   Text,
-  useColorMode,
-  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";
-import BuyMeCoffeeButton from "./BuyMeCoffeeButton";
+import { FaShoppingBag } from "react-icons/fa";
 
 interface NavItem {
   label: string;
@@ -29,23 +27,30 @@ const NAV_ITEMS: NavItem[] = [
     href: "/",
   },
   {
-    label: "Blog",
-    href: "/blog",
+    label: "Products",
+    href: "/products",
   },
   {
-    label: "About",
+    label: "About Us",
     href: "/about",
+  },
+  {
+    label: "How to Use",
+    href: "/how-to-use",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
   },
 ];
 
 const Header = () => {
   const { isOpen, onToggle } = useDisclosure();
-  const { colorMode, toggleColorMode } = useColorMode();
 
-  // Use specific colors to ensure opacity in both modes
-  const bgColor = useColorModeValue("white", "#1A202C"); // Using specific hex for dark mode
-  const textColor = useColorModeValue("neutral.800", "neutral.100");
-  const borderColor = useColorModeValue("neutral.200", "neutral.700");
+  // Use the brand colors for the header
+  const bgColor = "white";
+  const textColor = "gray.700";
+  const borderColor = "brand.100";
 
   return (
     <Box
@@ -93,14 +98,14 @@ const Header = () => {
               textAlign={{ base: "center", md: "left" }}
               fontFamily={"heading"}
               fontWeight="bold"
-              fontSize="xl"
-              color="primary.500"
+              fontSize="2xl"
+              color="brand.700"
               _hover={{
                 textDecoration: "none",
-                color: "primary.600",
+                color: "brand.600",
               }}
             >
-              Gatsby TypeScript ChakraUI
+              self
             </Text>
 
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -116,7 +121,7 @@ const Header = () => {
                     color={textColor}
                     _hover={{
                       textDecoration: "none",
-                      color: "primary.500",
+                      color: "brand.500",
                     }}
                   >
                     {navItem.label}
@@ -132,12 +137,20 @@ const Header = () => {
             direction={"row"}
             spacing={6}
           >
-            <IconButton
-              aria-label={`Switch to ${colorMode === "light" ? "dark" : "light"} mode`}
-              variant="ghost"
-              icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              onClick={toggleColorMode}
-            />
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"brand.500"}
+              href={"#"}
+              _hover={{
+                bg: "brand.600",
+              }}
+              leftIcon={<FaShoppingBag />}
+            >
+              Shop Now
+            </Button>
           </Stack>
         </Flex>
 
@@ -155,22 +168,24 @@ const Header = () => {
                   color={textColor}
                   _hover={{
                     textDecoration: "none",
-                    color: "primary.500",
+                    color: "brand.500",
                   }}
                 >
                   {navItem.label}
                 </Link>
               ))}
               <Button
-                as={GatsbyLink}
-                to="/contact"
                 w="full"
                 fontSize={"sm"}
                 fontWeight={600}
-                colorScheme="primary"
-                variant="solid"
+                bg={"brand.500"}
+                color={"white"}
+                _hover={{
+                  bg: "brand.600",
+                }}
+                leftIcon={<FaShoppingBag />}
               >
-                Get Started
+                Shop Now
               </Button>
             </Stack>
           </Box>

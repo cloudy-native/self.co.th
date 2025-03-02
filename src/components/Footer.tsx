@@ -1,19 +1,21 @@
 import {
   Box,
+  Button,
   Container,
   Divider,
+  Flex,
+  FormControl,
+  Input,
   Link,
   SimpleGrid,
   Stack,
   Text,
   VisuallyHidden,
   chakra,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as GatsbyLink } from "gatsby";
 import React from "react";
-import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
-import BuyMeCoffeeButton from "./BuyMeCoffeeButton";
+import { FaFacebook, FaInstagram, FaLine, FaTiktok } from "react-icons/fa";
 
 const SocialButton = ({
   children,
@@ -26,10 +28,10 @@ const SocialButton = ({
 }) => {
   return (
     <chakra.button
-      bg={useColorModeValue("neutral.100", "neutral.800")}
+      bg="white"
       rounded={"full"}
-      w={8}
-      h={8}
+      w={10}
+      h={10}
       cursor={"pointer"}
       as={"a"}
       href={href}
@@ -37,9 +39,13 @@ const SocialButton = ({
       alignItems={"center"}
       justifyContent={"center"}
       transition={"background 0.3s ease"}
+      boxShadow="sm"
+      border="1px solid"
+      borderColor="brand.100"
       _hover={{
-        bg: useColorModeValue("primary.500", "primary.400"),
+        bg: "brand.500",
         color: "white",
+        borderColor: "brand.500",
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -57,9 +63,9 @@ const ListHeader = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Footer = () => {
-  const bgColor = useColorModeValue("neutral.50", "neutral.900");
-  const borderColor = useColorModeValue("neutral.200", "neutral.700");
-  const textColor = useColorModeValue("neutral.700", "neutral.300");
+  const bgColor = "brand.50";
+  const borderColor = "brand.100";
+  const textColor = "gray.700";
 
   return (
     <Box
@@ -81,65 +87,95 @@ const Footer = () => {
                 to="/"
                 fontFamily={"heading"}
                 fontWeight="bold"
-                fontSize="xl"
-                color="primary.500"
+                fontSize="2xl"
+                color="brand.700"
               >
-                Gatsby TypeScript ChakraUI
+                self
               </Text>
             </Box>
             <Text fontSize={"sm"}>
-              A modern Gatsby starter template featuring TypeScript and Chakra UI
-              for building fast, responsive websites with a great developer experience.
+              Natural beauty products that blend traditional Thai wisdom with modern innovation
+              for healthy skin that radiates with natural glow.
             </Text>
             <Stack direction={"row"} spacing={4}>
-              <SocialButton label={"Twitter"} href={"https://twitter.com"}>
-                <FaTwitter />
-              </SocialButton>
-              <SocialButton label={"LinkedIn"} href={"https://linkedin.com"}>
-                <FaLinkedin />
-              </SocialButton>
               <SocialButton label={"Facebook"} href={"https://facebook.com"}>
                 <FaFacebook />
+              </SocialButton>
+              <SocialButton label={"Instagram"} href={"https://instagram.com"}>
+                <FaInstagram />
+              </SocialButton>
+              <SocialButton label={"TikTok"} href={"https://tiktok.com"}>
+                <FaTiktok />
+              </SocialButton>
+              <SocialButton label={"Line"} href={"https://line.me"}>
+                <FaLine />
               </SocialButton>
             </Stack>
           </Stack>
 
           <Stack align={"flex-start"}>
-            <ListHeader>Resources</ListHeader>
-            <Link as={GatsbyLink} to="/blog">
-              Blog
-            </Link>
-            <Link href="https://www.gatsbyjs.com/docs/" isExternal>
-              Gatsby Docs
-            </Link>
-            <Link href="https://chakra-ui.com/docs/getting-started" isExternal>
-              Chakra UI Docs
-            </Link>
-            <Link href="https://www.typescriptlang.org/docs/" isExternal>
-              TypeScript Docs
-            </Link>
-          </Stack>
-
-          <Stack align={"flex-start"}>
-            <ListHeader>Site</ListHeader>
-            <Link as={GatsbyLink} to="/about">
-              About
-            </Link>
-            <Link as={GatsbyLink} to="/blog">
-              Blog
-            </Link>
+            <ListHeader>Pages</ListHeader>
             <Link as={GatsbyLink} to="/">
               Home
             </Link>
+            <Link as={GatsbyLink} to="/products">
+              Products
+            </Link>
+            <Link as={GatsbyLink} to="/about">
+              About Us
+            </Link>
+            <Link as={GatsbyLink} to="/how-to-use">
+              How to Use
+            </Link>
           </Stack>
 
           <Stack align={"flex-start"}>
-            <ListHeader>Support Me</ListHeader>
+            <ListHeader>Policies</ListHeader>
+            <Link as={GatsbyLink} to="/privacy-policy">
+              Privacy Policy
+            </Link>
+            <Link as={GatsbyLink} to="/terms">
+              Terms of Service
+            </Link>
+            <Link as={GatsbyLink} to="/shipping">
+              Shipping
+            </Link>
+            <Link as={GatsbyLink} to="/refund">
+              Returns & Refunds
+            </Link>
+          </Stack>
+
+          <Stack align={"flex-start"}>
+            <ListHeader>Stay Updated</ListHeader>
             <Text>
-              If you like this and want to help a little bit, you can send small
-              donation.
+              Sign up to receive news and special promotions from us
             </Text>
-            <BuyMeCoffeeButton />
+            <Flex mt={2} w="full">
+              <FormControl mr={2}>
+                <Input
+                  placeholder="Your email"
+                  bg="white"
+                  border="1px solid"
+                  borderColor="brand.200"
+                  _hover={{
+                    borderColor: "brand.300",
+                  }}
+                  _focus={{
+                    borderColor: "brand.400",
+                  }}
+                />
+              </FormControl>
+              <Button
+                bg="brand.500"
+                color="white"
+                _hover={{
+                  bg: "brand.600",
+                }}
+                px={6}
+              >
+                Subscribe
+              </Button>
+            </Flex>
           </Stack>
         </SimpleGrid>
       </Container>
@@ -148,7 +184,7 @@ const Footer = () => {
 
       <Box py={4}>
         <Text pt={2} fontSize={"sm"} textAlign={"center"}>
-          © {new Date().getFullYear()} Gatsby TypeScript ChakraUI Starter. All rights reserved.
+          © {new Date().getFullYear()} self co., ltd. - Natural Beauty Products
         </Text>
       </Box>
     </Box>

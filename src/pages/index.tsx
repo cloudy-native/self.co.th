@@ -5,17 +5,17 @@ import {
   Flex,
   Heading,
   Icon,
+  Image,
   Link,
   SimpleGrid,
   Stack,
   Text,
   VStack,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { HeadFC, Link as GatsbyLink, PageProps } from "gatsby";
 import * as React from "react";
-import { FaGithub, FaReact, FaCode } from "react-icons/fa";
-import { SiGatsby, SiTypescript, SiChakraui } from "react-icons/si";
+import { FaLeaf, FaSpa, FaShoppingBag, FaHeart } from "react-icons/fa";
+import { GiFlowerPot, GiHerbsBundle } from "react-icons/gi";
 
 const Feature = ({ title, text, icon }) => {
   return (
@@ -24,13 +24,14 @@ const Feature = ({ title, text, icon }) => {
       textAlign={"center"}
       p={8}
       rounded={"lg"}
-      bg={useColorModeValue("white", "gray.800")}
-      boxShadow={"lg"}
+      bg={"white"}
+      boxShadow={"sm"}
       border={"1px solid"}
-      borderColor={useColorModeValue("gray.200", "gray.700")}
+      borderColor={"brand.100"}
       transition="transform 0.3s"
       _hover={{
         transform: "translateY(-5px)",
+        boxShadow: "md",
       }}
     >
       <Flex
@@ -40,28 +41,25 @@ const Feature = ({ title, text, icon }) => {
         justify={"center"}
         color={"white"}
         rounded={"full"}
-        bg={"blue.500"}
+        bg={"brand.500"}
         mb={5}
       >
         <Icon as={icon} w={8} h={8} />
       </Flex>
-      <Heading fontSize={"xl"}>{title}</Heading>
-      <Text color={useColorModeValue("gray.600", "gray.400")}>{text}</Text>
+      <Heading fontSize={"xl"} color={"brand.800"}>{title}</Heading>
+      <Text color={"gray.600"}>{text}</Text>
     </Stack>
   );
 };
 
 const IndexPage: React.FC<PageProps> = () => {
-  const bgGradient = useColorModeValue(
-    "linear(to-b, blue.50, white)",
-    "linear(to-b, gray.900, gray.800)"
-  );
+  const bgGradient = "linear(to-b, brand.50, white)";
 
   return (
     <>
       {/* Hero Section */}
       <Box 
-        bg={useColorModeValue("blue.50", "gray.900")}
+        bg="brand.50"
         bgGradient={bgGradient}
         pt={20} 
         pb={16}
@@ -73,136 +71,172 @@ const IndexPage: React.FC<PageProps> = () => {
             spacing={{ base: 8, md: 10 }}
           >
             <Heading
-              fontWeight={700}
+              fontWeight={600}
               fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
               lineHeight={"110%"}
-              color={useColorModeValue("blue.600", "blue.300")}
+              color={"brand.700"}
             >
-              Gatsby + TypeScript +{" "}
-              <Text as={"span"} color={useColorModeValue("teal.500", "teal.300")}>
-                Chakra UI
+              self{" "}
+              <Text as={"span"} color={"accent.emerald"}>
+                natural living
               </Text>
             </Heading>
             <Text
-              color={useColorModeValue("gray.600", "gray.400")}
+              color={"gray.600"}
               maxW={"3xl"}
               fontSize={{ base: "lg", md: "xl" }}
               lineHeight={1.8}
             >
-              A modern starter template for building fast, responsive websites with
-              Gatsby, TypeScript, and Chakra UI. Get started quickly with a
-              production-ready setup featuring dark mode support, responsive design,
-              and a component-based architecture.
+              Natural beauty products that blend traditional Thai wisdom with modern innovation
+              for healthy skin that radiates with natural glow.
             </Text>
             <Stack spacing={6} direction={{ base: "column", sm: "row" }}>
               <Button
-                as={Link}
-                href="https://github.com/cloudy-native/gatsby-typescript-chakraui"
-                isExternal
                 rounded={"full"}
                 size={"lg"}
-                fontWeight={"bold"}
+                fontWeight={"normal"}
                 px={6}
-                colorScheme={"blue"}
-                leftIcon={<FaGithub />}
+                bg={"brand.500"}
+                _hover={{ bg: "brand.600" }}
+                leftIcon={<FaShoppingBag />}
               >
-                GitHub Repo
+                Shop Now
               </Button>
               <Button
                 as={GatsbyLink}
-                to="/blog"
+                to="/about"
                 rounded={"full"}
                 size={"lg"}
-                fontWeight={"bold"}
+                fontWeight={"normal"}
                 px={6}
-                leftIcon={<FaCode />}
-                colorScheme={"teal"}
+                variant={"outline"}
+                colorScheme="brand"
+                leftIcon={<FaHeart />}
               >
-                View Blog
+                About Us
               </Button>
             </Stack>
           </Stack>
         </Container>
       </Box>
 
-      {/* Features Section */}
+      {/* Featured Products */}
       <Container maxW={"6xl"} py={16}>
-        <VStack spacing={10}>
+        <VStack spacing={12}>
           <Heading
             fontSize={{ base: "2xl", sm: "3xl" }}
             textAlign="center"
+            color={"brand.700"}
           >
-            Key Features
+            Our Products
           </Heading>
           
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} width="full">
             <Feature
-              icon={SiGatsby}
-              title={"Gatsby"}
-              text={"Leverage Gatsby's performance optimizations, plugin ecosystem, and modern development features for a lightning-fast site."}
+              icon={FaLeaf}
+              title={"Facial Serum"}
+              text={"A special formula enriched with Centella Asiatica and Aloe Vera extracts that helps rejuvenate skin and reduce fine lines."}
             />
             <Feature
-              icon={SiTypescript}
-              title={"TypeScript"}
-              text={"Build with confidence using TypeScript for type safety, better developer experience, and fewer runtime errors."}
+              icon={GiFlowerPot}
+              title={"Facial Mask"}
+              text={"A mask that restores facial moisture with extracts from flowers and Thai herbs, perfect for dry and combination skin."}
             />
             <Feature
-              icon={SiChakraui}
-              title={"Chakra UI"}
-              text={"Create beautiful, accessible interfaces with Chakra UI's composable and reusable component library with built-in dark mode."}
+              icon={GiHerbsBundle}
+              title={"Body Cream"}
+              text={"A body cream that softens and moisturizes skin with fragrant natural herbs, transforming dry skin into smooth, supple skin."}
             />
           </SimpleGrid>
         </VStack>
       </Container>
 
-      {/* Getting Started */}
-      <Box bg={useColorModeValue("gray.50", "gray.900")} py={16}>
-        <Container maxW={"4xl"}>
-          <VStack spacing={8} textAlign="center">
-            <Heading>Getting Started</Heading>
-            <Text fontSize="lg" color={useColorModeValue("gray.600", "gray.400")}>
-              Clone the repository and start building your next project with this template. 
-              Customize the theme, add your content, and deploy!
-            </Text>
-            <Box
-              p={6}
-              rounded="md"
-              bg={useColorModeValue("blackAlpha.50", "whiteAlpha.100")}
-              width="full"
-              border="1px"
-              borderColor={useColorModeValue("gray.200", "gray.700")}
-            >
-              <Text fontFamily="mono" fontSize={{ base: "sm", md: "md" }}>
-                # Clone the repository<br />
-                git clone https://github.com/cloudy-native/gatsby-typescript-chakraui.git<br /><br />
-                
-                # Navigate to the directory<br />
-                cd gatsby-typescript-chakraui<br /><br />
-                
-                # Install dependencies<br />
-                npm install<br /><br />
-                
-                # Start the development server<br />
-                npm run develop
+      {/* Our Philosophy */}
+      <Box bg="brand.100" py={16}>
+        <Container maxW={"5xl"}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+            <VStack align="start" spacing={6}>
+              <Heading color="brand.700">Our Philosophy</Heading>
+              <Text fontSize="lg" color="gray.700" lineHeight="tall">
+                At Self, we believe in the power of nature and traditional Thai wisdom. We carefully select ingredients from the best sources in Thailand 
+                and manufacture with attention to every step to ensure the highest quality products.
               </Text>
-            </Box>
-            <Button
-              as={GatsbyLink}
-              to="/about"
-              colorScheme="blue"
-              size="lg"
-              rounded="full"
-              mt={4}
-            >
-              Learn More
-            </Button>
-          </VStack>
+              <Text fontSize="lg" color="gray.700" lineHeight="tall">
+                We care about every detail, from selecting safe ingredients, avoiding animal testing, to using environmentally friendly packaging, 
+                because we believe that true beauty must come with responsibility.
+              </Text>
+              <Button 
+                variant="outline" 
+                colorScheme="brand"
+                rounded="full"
+              >
+                Read More
+              </Button>
+            </VStack>
+            <Flex align="center" justify="center">
+              <Box
+                w="full"
+                h="350px"
+                bg="accent.teal"
+                rounded="lg"
+                boxShadow="lg"
+                position="relative"
+                overflow="hidden"
+              >
+                {/* Placeholder for product image */}
+                <Text 
+                  position="absolute" 
+                  top="50%" 
+                  left="50%" 
+                  transform="translate(-50%, -50%)" 
+                  color="white" 
+                  fontSize="xl"
+                  fontWeight="bold"
+                >
+                  Product Image
+                </Text>
+              </Box>
+            </Flex>
+          </SimpleGrid>
         </Container>
       </Box>
+
+      {/* Testimonials */}
+      <Container maxW={"6xl"} py={16}>
+        <VStack spacing={10}>
+          <Heading color="brand.700">What Our Customers Say</Heading>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+            {[1, 2, 3].map((i) => (
+              <Box 
+                key={i}
+                bg="white" 
+                p={8} 
+                rounded="lg" 
+                boxShadow="sm"
+                borderColor="brand.100"
+                borderWidth="1px"
+              >
+                <VStack spacing={4} align="start">
+                  <Text fontSize="lg" fontStyle="italic" color="gray.600">
+                    "I've tried many brands, but Self products are the best. My skin is smoother and feels moisturized all day long."
+                  </Text>
+                  <Flex w="full">
+                    <Box bg="brand.200" w={10} h={10} rounded="full" mr={3}></Box>
+                    <Box>
+                      <Text fontWeight="bold">Napha</Text>
+                      <Text fontSize="sm" color="gray.500">Regular Customer</Text>
+                    </Box>
+                  </Flex>
+                </VStack>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </VStack>
+      </Container>
     </>
   );
 };
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home | Gatsby TypeScript ChakraUI Starter</title>;
+export const Head: HeadFC = () => <title>Self | Natural Beauty Products</title>;

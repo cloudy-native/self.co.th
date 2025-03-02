@@ -2,10 +2,10 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Gatsby TypeScript ChakraUI`,
-    description: `A Gatsby starter template with TypeScript and Chakra UI`,
-    author: `@yourusername`,
-    siteUrl: `https://yoursite.com`,
+    title: `Self | Natural Beauty Products`,
+    description: `Self - A Thai cosmetics and skincare brand that combines traditional Thai wisdom with modern innovation`,
+    author: `@selfcoth`,
+    siteUrl: `https://self.co.th`,
   },
   graphqlTypegen: true,
   plugins: [
@@ -16,15 +16,15 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Source Sans Pro:400,600,700`],
+        fonts: [`Montserrat:400,500,600,700`, `Open Sans:300,400,600,700`],
         display: "swap",
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `blog`,
-        path: `${__dirname}/content/blog`,
+        name: `products`,
+        path: `${__dirname}/content/products`,
       },
     },
     {

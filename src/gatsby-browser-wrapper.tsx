@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import Layout from "./components/Layout";
 import theme from "./theme";
@@ -6,12 +6,9 @@ import theme from "./theme";
 // Wrap all pages with the ChakraProvider
 export const wrapRootElement = ({ element }: { element: React.ReactNode }) => {
   return (
-    <>
-      <ColorModeScript initialColorMode={"system"} />
-      <ChakraProvider resetCSS theme={theme}>
-        {element}
-      </ChakraProvider>
-    </>
+    <ChakraProvider resetCSS theme={theme}>
+      {element}
+    </ChakraProvider>
   );
 };
 
